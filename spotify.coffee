@@ -1,4 +1,4 @@
-command: "sh ./scripts/spotify.sh"
+command: "sh '/Users/nason/Library/Application\ Support/Übersicht/widgets/chunkbar.widget/scripts/spotify.sh'"
 
 refreshFrequency: '2s' # ms
 
@@ -10,7 +10,7 @@ render: (output) ->
 
 style: """
   color: #66d9ef
-  font: 12px Hack
+  font: 12px SourceCodePro-Medium 
   left: 8px
   bottom: 10.5px
   width:850px
@@ -42,20 +42,20 @@ update: (output, domEl) ->
      song = @cutWhiteSpace(song)
      song = song + "…"
 
-   elaspedValues = elapsed.split(':')
-   elaspedSeconds = 60 * parseInt(elaspedValues[0]) + parseInt(elaspedValues)
+   elapsedValues = elapsed.split(':')
+   elapsedSeconds = 60 * parseInt(elapsedValues[0]) + parseInt(elapsedValues[1])
    
    totalValues = total.split(':')
-   totalSeconds = 60 * parseInt(totalValues[0]) + parseInt(totalValues)
+   totalSeconds = 60 * parseInt(totalValues[0]) + parseInt(totalValues[1])
 
-   elapsed = elaspedSeconds / totalSeconds
+   elapsed = elapsedSeconds / totalSeconds
 
    # Create mpdHtmlString
    mpdHtmlString = "<span class='icon switch'></span><span class='white'>  #{artist} - #{song}&nbsp</span>"
 
    emptySpace = (70 - artist.length - song.length - 3) / 2
 
-   elapsedCounter = parseInt(elapsed * emptySpace / 100 )
+   elapsedCounter = parseInt(elapsed * emptySpace)
    remainingCounter = emptySpace - elapsedCounter - 1
 
 
@@ -77,15 +77,14 @@ update: (output, domEl) ->
    mpdHtmlString += "</span>"
 
 
-   mpdHtmlString += "<span class='sicon prev'>&nbsp&nbsp</span>" + " "
+   mpdHtmlString += "<span class='icon prev'>&nbsp&nbsp</span>" + " "
 
    if status == "playing."
-      mpdHtmlString += "<span class='sicon pause'></span>" + " "
+      mpdHtmlString += "<span class='icon pause'></span>" + " "
    else
-      mpdHtmlString += "<span class='sicon play'></span>" + " "
+      mpdHtmlString += "<span class='icon play'></span>" + " "
 
-   mpdHtmlString += "<span class='sicon next'></span>"
-
+   mpdHtmlString += "<span class='icon next'></span>"
 
    $(domEl).find('.spotify').html(mpdHtmlString)
 

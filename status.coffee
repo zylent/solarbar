@@ -1,10 +1,10 @@
-command: "sh ./scripts/status.sh"
+command: "sh ./chunkbar.widget/scripts/status.sh"
 
 refreshFrequency: 5000 # ms
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="./colors.css" />
+    <link rel="stylesheet" type="text/css" href="./chunkbar.widget/colors.css" />
     <div class="compstatus"></div>
   """
 
@@ -13,20 +13,20 @@ style: """
   top: 5px
   height: 13
   .wifi
-    font: 14px FontAwesome
+    font: 14px FontAwesome5FreeSolid
     top: 1px
     position: relative
     left: 10px
   .charging
-    font: 13px FontAwesome
+    font: 13px FontAwesome5FreeSolid
     position: relative
     top: 0px
-    right: -11px
+    right: 2px
     z-index: 1
   """
 timeAndDate: (date, time) ->
   # returns a formatted html string with the date and time
-  return "<span class='white'><span class='ricon'>&nbsp</span>#{date}&nbsp<span class='ricon'></span>#{time}</span></span>"
+  return "<span class='white'><span class='ricon'>&nbsp</span>#{date}&nbsp<span class='ricon'></span>#{time}</span></span>"
 
 batteryStatus: (battery, state) ->
   #returns a formatted html string current battery percentage, a representative icon and adds a lighting bolt if the
@@ -53,17 +53,13 @@ batteryStatus: (battery, state) ->
 
 getWifiStatus: (status, netName, netIP) ->
   if status == "Wi-Fi"
-    return "<span class='wifi '>&nbsp&nbsp&nbsp</span><span class='white'>#{netName}&nbsp</span>"
+    return "<span class='wifi '>&nbsp&nbsp&nbsp</span><span class='white'>#{netName} - #{netIP}&nbsp</span>"
   if status == 'USB 10/100/1000 LAN' or status == 'Apple USB Ethernet Adapter'
     return "<span class='wifi '>&nbsp&nbsp&nbsp</span><span class='white'>#{netIP}</span>"
   else
     return "<span class='grey wifi'>&nbsp&nbsp&nbsp</span><span class='white'>--&nbsp&nbsp&nbsp</span>"
 
-getMailCount: (count) ->
-  return "<span class='ricon'></span><span class=white>#{count}</span>"
 
-getReminders: (reminders) ->
-  return "<span class='reminders'><span class='ricon'></span></span><span class='white'>#{reminders}&nbsp</span>"
 
 
 update: (output, domEl) ->
@@ -78,14 +74,10 @@ update: (output, domEl) ->
   netStatus = values[4].replace /^\s+|\s+$/g, ""
   netName = values[5]
   netIP = values[6]
-  mail = values[7]
-  reminders = values[8].replace /^\s+|\s+$/g, ""
 
   # create an HTML string to be displayed by the widget
   htmlString = @getWifiStatus(netStatus, netName, netIP) +
                @batteryStatus(battery, isCharging) + "<span class='cyan'>" + " ⎢ " + "</span>" +
-               @getMailCount(mail) + "&nbsp&nbsp" +
-               @getReminders(reminders) + "<span class='cyan'>⎢</span>" +
                @timeAndDate(date,time) + "<span class ='cyan'> ⎢</span>"
 
   $(domEl).find('.compstatus').html(htmlString)

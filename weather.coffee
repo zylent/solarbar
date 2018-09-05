@@ -1,10 +1,10 @@
-command: "/usr/local/bin/python3 ./scripts/weatherscript.py"
+command: "/usr/local/bin/python3 '/Users/nason/Library/Application\ Support/Übersicht/widgets/chunkbar.widget/scripts/weatherscript.py'"
 
 refreshFrequency: 600000 # ms
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="./colors.css" />
+    <link rel="stylesheet" type="text/css" href="./chunkbar.widget/colors.css" />
     <div class='compstatus'></div>
     <div class='weather_forecast'></div>
   """

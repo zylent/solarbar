@@ -1,4 +1,4 @@
-command: "sh ./chunkbar.widget/scripts/screens"
+command: "sh ./chunkbar.widget/scripts/screens2"
 
 refreshFrequency: 3000 # ms
 
@@ -29,7 +29,7 @@ getAppIcon: (app) ->
     app = app.toLowerCase()
 
     if app == 'firefox '
-        return "<span class='sicon'>&nbsp</span>"
+        return "<span class='bicon'>&nbsp</span>"
     if app == 'hipchat '
         return "<span class='bicon'>&nbsp</span>"
     if app == 'messages'
@@ -44,7 +44,6 @@ getAppIcon: (app) ->
         return "<span class='icon'></span>"
     if app == 'finder '
         return "<span class='icon'></span>"
-
     if app == 'transmission '
         return "<span class='icon'></span>"
     if app == 'system preferences '

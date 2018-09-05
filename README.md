@@ -2,13 +2,7 @@
 
 Personal [Übersicht](http://tracesof.net/uebersicht/) system information bars for use with [chunkwm](https://github.com/koekeishiya/chunkwm) Window manager and designed with colors from the soloarized theme, though there are other color schemes in the color folder.
 
-The older version based on [kwm](https://github.com/koekeishiya/kwm) can be
-found [here](https://github.com/apierz/nerdbar.widget).
-
-*Screen Shots:*
-![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshotone.png?raw=true)
-![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshottwo.ong.png?raw=true)
-
+Shamelessly stolen from wherever I've found interesting ideas
 
 The original widget created by *herrbischoff* can be found [here](https://github.com/herrbischoff/nerdbar.widget).
 
@@ -24,18 +18,15 @@ Further modifications were made by [koekeishiya](https://github.com/koekeishiya)
 You can find the necessary scripts in scripts directory.
 
 ### Backgrounds
-These are as simple as Ubersicht widgets get, they make black bars at the top, bottom left and bottom right of the screen that the other widgets sit on top of.
+Draws the bars
 
-
-### mode.coffee
+### mode(x).coffee
 ![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshotthree.png?raw=true)
 
-This widget is designed to work with KWM. It shows the current KWM mode (bsp, float, monocle) and the number of desktops and the current one. If enabled in the Ubersicht preferences menu, holding the interaction key and clicking on the mode will cycle through the KWM modes and clicking on desktop icons will change the current desktop to the one clicked on. This works best if your interaction shortcut is ctrl.
-
-### currentWindow.coffee
-![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshotfour.png?raw=true)
-
-This widget shows the currently selected window. If working on a file, it can highlight the name of the file being worked on.
+This set of widgets displays the current window id from chunkwm, and the current desktop mode. currently kind of hacky as you need to display each copy once on each screen. I have 3 screens, so 3 separate scripts.
+Edit the mode(x).coffee to point at the matching screens(x) shell script in /screens, and insert the monitor id of the monitor that mode(x).coffee will run on.
+You can run these commands in a shell to test you're getting what you expect.
+This also displays the focused window, and contains the rules for the iconization of the application title. Adjust as necessary, all fontawesome icons are cool to use here.
 
 ### status.coffee
 ![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshot5.png?raw=true)
@@ -43,9 +34,6 @@ This widget shows the currently selected window. If working on a file, it can hi
 * This widget shows the current time and date.
 * The battery widget changes color from green to yellow to red as battery percentage changes. Now has a little lightning bolt that will appear when the computer is plugged in (taken from [Mizzazz](https://github.com/Mizzazz/Betterbar)).
 * Network connection indicator widget. Shows grey if no connection detected and blue if there's an active connection on Wi-Fi or Ethernet. Shows different icons for Wi-Fi and Ethernet and will show your IP or current wifi network name.
-* Mail indicator shows number of new messages in your inbox. Works with Maildir
-  style email storage.
-* Reminders indicator shows number of uncompleted reminders in Apple's reminders app.
 
 ### weather.coffee
 ![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshot6.png?raw=true)
@@ -64,22 +52,19 @@ This widget shows a number of current system indicators.
 * Current memory and CPU percentage
 * Current free HD space in gb
 
-### nowplaying.coffee
-![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshot9.png?raw=true)
-![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshot8.png?raw=true)
+### spotify.coffee 
+I use spotify, so I use this for music management. You must install shpotify for this to work:
 
-This widget works with MPD and NCMPCPP and the Transmission cli torrent client. It shows the current track and artist, the position in current track and has some simple play controls.
-
-Clicking on the icon while holding the interaction key will toggle the widget between current MPD status and the current download progress of active torrents and the number of downloading / total.
-
-There is also a Spotify widget included but you must
 `brew install shpotify`
-a command line spotify utility by [hnarayanan](https://github.com/hnarayanan) first
 
 ### volume.coffee
 ![img](https://github.com/apierz/nerdbar.widget/blob/master/screens/screenshot10.png?raw=true)
 
-You can slide the range control to adjust volume. Icon changes with volume level.
+Mostly broken but including it anyways
+
+### vpn.coffee 
+Displays current VPN status and IP, need to make it not break when not on vpn
+"work in progress"
 
 ## Installation
 
@@ -88,12 +73,12 @@ Make sure you have [Übersicht](http://tracesof.net/uebersicht/) installed.
 Then clone this repository.
 
 ```bash
-git clone https://github.com/apierz/chunkbar.widget $HOME/Library/Application\ Support/Übersicht/widgets/chunkbar.widget
+git clone https://github.com/zylent/chunkbar.widget $HOME/Library/Application\ Support/Übersicht/widgets/chunkbar.widget
 ```
 
 or to your current widget directory if you have changed it.
 The scripts may require installing some additional packages, such as Python, but all are available via homebrew.
-
+The stripts directory may also contain random unused scripts, because I'm lazy.
 
 The icons require the use of extra fonts:
 
@@ -102,13 +87,3 @@ The icons require the use of extra fonts:
 
 That have to be installed system wide. You can drag the files into FontBook.app to do this.
 
-## Troubleshooting
-
-### It says it can't find the scripts!
-
-If your widgets look like this:
-![something is amiss](https://user-images.githubusercontent.com/31190088/36876302-403f83f8-1dac-11e8-9887-7b4ca8858891.png)
-
-Some people have problems with the scripts using relative paths, but I haven't been able to reproduce it to figure out what to fix. If you go into the individual coffee files and replace the `./scripts/scriptname` path with an absolute path like `/Users/You/YourWidgetFolder/scripts/scriptname` that should fix things.
-
-If anyone sees this and knows what I'm doing wrong with the relative paths, please let me know.

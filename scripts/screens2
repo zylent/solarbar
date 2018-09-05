@@ -5,7 +5,7 @@ spaces=/usr/local/bin/DisplaySpaces
 
 sleep 2.00
 mode=$($chunkc tiling::query -d mode)
-spacesout=$($spaces | head -1)
+spacesout=$($spaces | tail -1)
 
 echo "$mode@${spacesout: -1}@${spacesout: -3:1}@$(sh ./chunkbar.widget/scripts/activeWindow.sh)"
 #echo "$mode@${spacesout: -1}@${spacesout: -3:1}@$(/usr/local/bin/chunkc tiling::query -w name)"

@@ -4,7 +4,7 @@ render: (output) ->
   "<span class='background'></span>"
 
 style: """
-  background-color: #fdf6e3;
+  background-color: #002b36;
   width: 99.5%;
   top: 3px;
   right: 2px;

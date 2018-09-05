@@ -1,10 +1,10 @@
-command: "sh ../nerdbar.widget/scripts/stats.sh"
+command: "sh '/Users/nason/Library/Application\ Support/Übersicht/widgets/chunkbar.widget/scripts/stats.sh'"
 
 refreshFrequency: 3000 # ms
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="./colors.css" />
+    <link rel="stylesheet" type="text/css" href="./chunkbar.widget/colors.css" />
     <div class='stats'></div>
   """
 
@@ -70,9 +70,9 @@ update: (output, domEl) ->
   free = values[4].replace(/[^0-9]/g,'')
 
   # create an HTML string to be displayed by the widget
-  htmlString =  @getNetTraffic(down, up) + "<span class='cyan'>&nbsp⎢&nbsp</span>" +
-                @getMem(mem) + "<span class='cyan'>&nbsp⎢&nbsp</span>" +
-                @getCPU(cpu) + "<span class='cyan'>&nbsp⎢&nbsp</span>" +
+  htmlString =  @getNetTraffic(down, up) + "<span class='cyan'>⎢</span>" +
+                @getMem(mem) + "<span class='cyan'>⎢</span>" +
+                @getCPU(cpu) + "<span class='cyan'>⎢</span>" +
                 @getFreeSpace(free)
 
   $(domEl).find('.stats').html(htmlString)

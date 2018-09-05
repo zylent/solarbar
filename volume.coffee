@@ -1,10 +1,10 @@
-command: "sh ./scripts/getvolume.sh"
+command: "sh ./chunkbar.widget/scripts/getvolume.sh"
 
 refreshFrequency: 2000 # ms
 
 render: (output) ->
   """
-    <link rel="stylesheet" type="text/css" href="./colors.css" />
+    <link rel="stylesheet" type="text/css" href="./chunkbar.widget/colors.css" />
     <input id="volume" type="range" min="0" max="100" step="5" />
   """
 
