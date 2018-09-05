@@ -73,7 +73,7 @@ Make sure you have [Übersicht](http://tracesof.net/uebersicht/) installed.
 Then clone this repository.
 
 ```bash
-git clone https://github.com/zylent/chunkbar.widget $HOME/Library/Application\ Support/Übersicht/widgets/chunkbar.widget
+git clone https://github.com/zylent/solarbar $HOME/Library/Application\ Support/Übersicht/widgets/chunkbar.widget
 ```
 
 or to your current widget directory if you have changed it.
